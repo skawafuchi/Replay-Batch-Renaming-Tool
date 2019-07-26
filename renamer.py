@@ -23,9 +23,12 @@ def load_settings():
     return settings
 
 def rename_file(filename,settings):
+    """
+    Rename the replay with the format following format
+    XvY - Win/Loss - Duration of replay in minutes - Name of opponent / their MMR - Map name
+    """
     if (path.splitext(filename)[1] == '.SC2Replay'): 
         archive = mpyq.MPQArchive(filename)
-        print(archive.header)
         contents = str(archive.header['user_data_header']['content'])         
         #figure out build version of replay
         header = versions.latest().decode_replay_header(contents)
